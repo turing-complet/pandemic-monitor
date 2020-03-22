@@ -45,6 +45,10 @@ def get_influxdb(dbname = 'covid'):
     client.create_database(dbname)
     return client
 
+def reset_db():
+    db = get_influxdb()
+    for series in SERIES.keys():
+        db.drop_measurement(series)
 
 def refresh_data():
     db = get_influxdb()
