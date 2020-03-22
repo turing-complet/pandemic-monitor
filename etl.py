@@ -32,23 +32,18 @@ def import_data(series_name):
     url = _format_url(SERIES[series_name])
     df = pd.read_csv(url)
     df2 = df.melt(id_vars=TAG_COLS)
-    df2.rename(columns={'variable': 'index', 'value': series_name}, inplace=True)
-    df2['index'] = pd.to_datetime(df['index'])
+    df2.rename(columns={'variable': 'date', 'value': series_name}, inplace=True)
+    df2['date'] = pd.to_datetime(df2['date'])
+    df2.set_index('date', inplace=True)
     return df2
 
 
 def get_influxdb(dbname = 'covid'):
     host = 'localhost'
     port = 8086
-    client = DataFrameClient(host, port, dbname)
+    client = DataFrameClient(host, port, database=dbname)
     client.create_database(dbname)
     return client
-
-def write_series(db, df, measurement):
-    # groups = df.groupby(TAG_COLS)
-    # for group in groups:
-    #     db.write_points()
-    db.write_points(df, measurement, tag_columns=TAG_COLS)
 
 
 def refresh_data():
