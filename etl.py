@@ -1,4 +1,5 @@
 import requests
+import time
 import pandas as pd
 from influxdb import DataFrameClient
 
@@ -9,6 +10,9 @@ SERIES = {
 }
 
 TAG_COLS = ['Province/State', 'Country/Region', 'Lat', 'Long']
+
+DB_HOST = 'influxdb'
+DB_PORT = 8086
 
 def _format_url(file):
     github = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series"
@@ -39,9 +43,7 @@ def import_data(series_name):
 
 
 def get_influxdb(dbname = 'covid'):
-    host = 'localhost'
-    port = 8086
-    client = DataFrameClient(host, port, database=dbname)
+    client = DataFrameClient(host=DB_HOST, port=DB_PORT, database=dbname)
     client.create_database(dbname)
     return client
 
@@ -57,4 +59,11 @@ def refresh_data():
         db.write_points(df, series_name, tag_columns=TAG_COLS)
         print(f'Refreshed data for series = {series_name}')
 
-refresh_data()
+while True:
+    time.sleep(10)
+    try:
+        refresh_data()
+        time.sleep(30000)
+    except:
+        print('Error refreshing db. Will retry in a bit')
+        time.sleep(30)

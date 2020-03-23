@@ -18,6 +18,11 @@ services:
       - grafana-storage:/var/lib/grafana
     restart:
       always
+  etl:
+    image: etl:1
+    container_name: etl
+    depends_on:
+      - influxdb
 volumes:
   influxdb:
   grafana-storage:
