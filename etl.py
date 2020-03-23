@@ -1,5 +1,6 @@
 import requests
 import time
+import os
 import pandas as pd
 from influxdb import DataFrameClient
 
@@ -11,7 +12,7 @@ SERIES = {
 
 TAG_COLS = ['Province/State', 'Country/Region', 'Lat', 'Long']
 
-DB_HOST = 'influxdb'
+DB_HOST = os.getenv('DB_HOST') or 'localhost'
 DB_PORT = 8086
 
 def _format_url(file):
@@ -59,11 +60,13 @@ def refresh_data():
         db.write_points(df, series_name, tag_columns=TAG_COLS)
         print(f'Refreshed data for series = {series_name}')
 
-while True:
-    time.sleep(10)
-    try:
-        refresh_data()
-        time.sleep(30000)
-    except:
-        print('Error refreshing db. Will retry in a bit')
-        time.sleep(30)
+if __name__ == '__main__':
+
+    while True:
+        time.sleep(10)
+        try:
+            refresh_data()
+            time.sleep(30000)
+        except:
+            print('Error refreshing db. Will retry in a bit')
+            time.sleep(30)
