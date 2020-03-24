@@ -21,6 +21,8 @@ services:
   etl:
     image: etl:1
     container_name: etl
+    environment: 
+      - DB_HOST=influxdb
     depends_on:
       - influxdb
 volumes:

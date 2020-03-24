@@ -1,13 +1,13 @@
 import requests
 import time
 import os
+import sys
 import pandas as pd
 from influxdb import DataFrameClient
 
 SERIES = {
-    'confirmed': "time_series_19-covid-Confirmed.csv",
-    'deaths': "time_series_19-covid-Deaths.csv",
-    'recovered': "time_series_19-covid-Recovered.csv",
+    'confirmed': "time_series_covid19_confirmed_global.csv",
+    'deaths': "time_series_covid19_deaths_global.csv"
 }
 
 TAG_COLS = ['Province/State', 'Country/Region', 'Lat', 'Long']
@@ -63,10 +63,10 @@ def refresh_data():
 if __name__ == '__main__':
 
     while True:
-        time.sleep(10)
         try:
             refresh_data()
-            time.sleep(30000)
+            time.sleep(3600)
         except:
             print('Error refreshing db. Will retry in a bit')
-            time.sleep(30)
+            print(sys.exc_info())
+            time.sleep(10)
