@@ -10,6 +10,8 @@ requests = "*"
 influxdb = "*"
 pandas = "*"
 ipython = "*"
+yfinance = "*"
+lxml = "*"
 
 [requires]
 python_version = "3.8"
