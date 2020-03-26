@@ -12,6 +12,9 @@ properties:
           memoryInGb: 1.5
       ports:
       - port: 3000
+      # volumeMounts:
+      # - mountPath: /var/lib/grafana
+      #   name: grafana-data
   - name: influxdb
     properties:
       image: influxdb
@@ -21,6 +24,9 @@ properties:
           memoryInGb: 1.5
       ports:
       - port: 8086
+      # volumeMounts:
+      # - mountPath: /var/lib/influxdb
+      #   name: influxdb-data
   - name: etl
     properties:
       image: turingcomplet.azurecr.io/etl:latest
@@ -31,7 +37,7 @@ properties:
   imageRegistryCredentials:
   - server: turingcomplet.azurecr.io
     username: turingcomplet
-    password: ####
+    password: '***'
   osType: Linux
   ipAddress:
     type: Public
@@ -39,5 +45,16 @@ properties:
     - protocol: tcp
       port: '3000'
     dnsNameLabel: pandemicMonitor
+  # volumes:
+  # - name: influxdb-data
+  #   azureFile:
+  #     sharename: influxdb
+  #     storageAccountName: pandemicfiles
+  #     storageAccountKey: '***'
+  # - name: grafana-data
+  #   azureFile:
+  #     sharename: grafana
+  #     storageAccountName: pandemicfiles
+  #     storageAccountKey: '***'
 tags: null
 type: Microsoft.ContainerInstance/containerGroups
