@@ -19,7 +19,7 @@ services:
     restart:
       always
   etl:
-    image: etl:1
+    image: etl:latest
     container_name: etl
     environment: 
       - DB_HOST=influxdb

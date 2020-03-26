@@ -5,5 +5,5 @@ COPY Pipfile Pipfile.lock ./
 RUN pipenv install --system
 
 # ENV DB_HOST influxdb
-COPY etl.py .
+COPY *.py ./
 CMD [ "python", "-u", "etl.py" ]
