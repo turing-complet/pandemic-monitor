@@ -10,7 +10,7 @@ services:
     restart:
       always
   grafana:
-    image: grafana:latest
+    image: grafana:local
     container_name: grafana
     ports:
       - 3001:3000
