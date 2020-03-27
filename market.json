@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -168,6 +168,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "marketDb",
+      "description": "Daily high/low of spy etf and vixy, representing overall market value and volatility.",
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -203,7 +204,7 @@
       "steppedLine": true,
       "targets": [
         {
-          "alias": "high",
+          "alias": "spy high",
           "groupBy": [
             {
               "params": [
@@ -234,7 +235,7 @@
           "tags": []
         },
         {
-          "alias": "low",
+          "alias": "spy low",
           "groupBy": [
             {
               "params": [
@@ -269,13 +270,75 @@
             ]
           ],
           "tags": []
+        },
+        {
+          "alias": "vixy high",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "vixy",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "High"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "vixy low",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "vixy",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Low"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "SPY history",
+      "title": "Market reaction",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -340,5 +403,5 @@
   "timezone": "",
   "title": "Market impact",
   "uid": "VjnlZo9Zz",
-  "version": 2
+  "version": 4
 }
