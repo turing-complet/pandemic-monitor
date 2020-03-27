@@ -4,13 +4,15 @@ datasources:
     type: influxdb
     access: proxy
     database: covid
-    url: http://influxdb:8086
+    editable: true
+    url: http://localhost:8086
     jsonData:
       timeInterval: "15s"
   - name: marketDb
     type: influxdb
     access: proxy
     database: market
-    url: http://influxdb:8086
+    editable: true
+    url: http://localhost:8086
     jsonData:
       timeInterval: "15s"
