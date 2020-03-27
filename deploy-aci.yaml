@@ -5,7 +5,7 @@ properties:
   containers:
   - name: grafana
     properties:
-      image: grafana/grafana
+      image: turingcomplet.azurecr.io/grafana:latest
       resources:
         requests:
           cpu: 1
@@ -37,7 +37,7 @@ properties:
   imageRegistryCredentials:
   - server: turingcomplet.azurecr.io
     username: turingcomplet
-    password: '***'
+    password: '###'
   osType: Linux
   ipAddress:
     type: Public
@@ -50,11 +50,11 @@ properties:
   #   azureFile:
   #     sharename: influxdb
   #     storageAccountName: pandemicfiles
-  #     storageAccountKey: '***'
+  #     storageAccountKey: '###'
   # - name: grafana-data
   #   azureFile:
   #     sharename: grafana
   #     storageAccountName: pandemicfiles
-  #     storageAccountKey: '***'
+  #     storageAccountKey: '###'
 tags: null
 type: Microsoft.ContainerInstance/containerGroups
