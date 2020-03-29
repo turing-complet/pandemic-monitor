@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 3,
   "links": [],
   "panels": [
     {
@@ -109,6 +109,37 @@
               {
                 "params": [
                   "deaths"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "recovered",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "recovered",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "recovered"
                 ],
                 "type": "field"
               },
@@ -403,5 +434,8 @@
   "timezone": "",
   "title": "Market impact",
   "uid": "VjnlZo9Zz",
-  "version": 4
+  "variables": {
+    "list": []
+  },
+  "version": 2
 }

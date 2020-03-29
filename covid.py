@@ -5,7 +5,8 @@ from influxdb import DataFrameClient
 
 SERIES = {
     'confirmed': "time_series_covid19_confirmed_global.csv",
-    'deaths': "time_series_covid19_deaths_global.csv"
+    'deaths': "time_series_covid19_deaths_global.csv",
+    "recovered": "time_series_covid19_recovered_global.csv"
 }
 
 TAG_COLS = ['Province/State', 'Country/Region', 'Lat', 'Long']
