@@ -2,7 +2,7 @@ Grafana dashboard for anything related to covid-19. Currently just testing it ou
 
 No guarantees on availability or correctness. 
 
-[Link to dashboard](pandemicmonitor.westus2.azurecontainer.io:3000/) 
+[Link to dashboard](http://pandemicmonitor.westus2.azurecontainer.io:3000/) 
 
 and sample screenshot:
 
