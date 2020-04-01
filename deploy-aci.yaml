@@ -12,6 +12,11 @@ properties:
           memoryInGb: 1.5
       ports:
       - port: 3000
+      environmentVariables:
+      - name: GF_INSTALL_PLUGINS
+        value: grafana-worldmap-panel
+      - name: GF_AUTH_ANONYMOUS_ENABLED
+        value: true
       # volumeMounts:
       # - mountPath: /var/lib/grafana
       #   name: grafana-data
