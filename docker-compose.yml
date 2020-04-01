@@ -25,6 +25,8 @@ services:
       - DB_HOST=influxdb
     depends_on:
       - influxdb
+    restart:
+      always
 volumes:
   influxdb:
   grafana-storage:
