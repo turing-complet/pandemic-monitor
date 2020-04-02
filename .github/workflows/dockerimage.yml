@@ -27,5 +27,7 @@ jobs:
         docker build grafana -t turingcomplet.azurecr.io/grafana:latest
         docker push turingcomplet.azurecr.io/etl:latest
         docker push turingcomplet.azurecr.io/grafana:latest
-        az container delete --name pandemicMonitor --resource-group ${{ secrets.RESOURCE_GROUP }}
+    - name: Deploy containers
+      run: |
+        az container delete --name pandemicMonitor --resource-group ${{ secrets.RESOURCE_GROUP }} --yes
         az container create --resource-group ${{ secrets.RESOURCE_GROUP }} --file deploy-aci.yaml
