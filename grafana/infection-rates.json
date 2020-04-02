@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 1,
   "links": [],
   "panels": [
     {
@@ -857,6 +857,6 @@
   },
   "timezone": "",
   "title": "Infection rates",
-  "uid": "l2Tz5Z9Wz",
+  "uid": null,
   "version": 2
 }
