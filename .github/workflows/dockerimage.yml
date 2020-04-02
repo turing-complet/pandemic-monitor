@@ -1,0 +1,27 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: azure/docker-login@v1
+      with:
+        login-server: turingcomplet.azurecr.io
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+        docker build . -t turingcomplet.azurecr.io/etl:latest
+        docker build grafana -t turingcomplet.azurecr.io/grafana:latest
+        docker push turingcomplet.azurecr.io/etl:latest
+        docker push turingcomplet.azurecr.io/grafana:latest
