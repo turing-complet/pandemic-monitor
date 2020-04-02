@@ -5,7 +5,7 @@ datasources:
     access: proxy
     database: covid
     editable: true
-    url: http://influxdb:8086
+    url: http://localhost:8086
     jsonData:
       timeInterval: "15s"
   - name: marketDb
@@ -13,6 +13,6 @@ datasources:
     access: proxy
     database: market
     editable: true
-    url: http://influxdb:8086
+    url: http://localhost:8086
     jsonData:
       timeInterval: "15s"
