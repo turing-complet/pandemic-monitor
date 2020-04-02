@@ -1,3 +1,5 @@
+![Continuous deployment](https://github.com/turing-complet/pandemic-monitor/workflows/Continuous%20deployment/badge.svg)
+
 Grafana dashboard for anything related to covid-19. Currently just testing it out with daily reports from https://github.com/CSSEGISandData/COVID-19/. 
 
 No guarantees on availability or correctness. 
