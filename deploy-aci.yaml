@@ -1,6 +1,11 @@
 apiVersion: 2018-10-01
 location: westus2
 name: pandemicMonitor
+identity:
+  type: UserAssigned
+  userAssignedIdentities: {
+    "/subscriptions/13aa53f9-2574-4fb3-81dc-7f838590d2c9/resourceGroups/infra/providers/Microsoft.ManagedIdentity/userAssignedIdentities/pandemicContIdent" : {}
+  }
 properties:
   containers:
   - name: grafana
@@ -39,10 +44,6 @@ properties:
         requests:
           cpu: 1
           memoryInGb: 1.5
-  imageRegistryCredentials:
-  - server: turingcomplet.azurecr.io
-    username: turingcomplet
-    password: '###'
   osType: Linux
   ipAddress:
     type: Public

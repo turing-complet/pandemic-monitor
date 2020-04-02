@@ -1,9 +1,7 @@
-name: Docker Image CI
+name: Continuous deployment
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
     branches: [ master ]
 
 jobs:
@@ -18,10 +16,16 @@ jobs:
         login-server: turingcomplet.azurecr.io
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
     - uses: actions/checkout@v2
-    - name: Build the Docker image
+    - name: Build and push images
       run: |
         docker build . -t turingcomplet.azurecr.io/etl:latest
         docker build grafana -t turingcomplet.azurecr.io/grafana:latest
         docker push turingcomplet.azurecr.io/etl:latest
         docker push turingcomplet.azurecr.io/grafana:latest
+        az container delete --name pandemicMonitor --resource-group ${{ secrets.RESOURCE_GROUP }}
+        az container create --resource-group ${{ secrets.RESOURCE_GROUP }} --file deploy-aci.yaml
