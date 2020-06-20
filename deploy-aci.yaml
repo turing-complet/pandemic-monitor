@@ -39,8 +39,6 @@ properties:
         requests:
           cpu: 1
           memoryInGb: 1.5
-  imageRegistryCredentials:
-  - server: turingcomplet.azurecr.io
   osType: Linux
   ipAddress:
     type: Public
